@@ -6,10 +6,21 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: budgetplanner_backend
-    hostname: budgetplanner
+    hostname: budgetplanner_backend
     ports:
       - "8010:8000"
     volumes:
       - ./backend:/app
     environment:
       - ENV=development
+
+  frontend:
+      build:
+        context: ./frontend
+        dockerfile: Dockerfile
+      container_name: budgetplanner_frontend
+      hostname: budgetplanner_frontend
+      ports:
+        - "8011:5173"
+      volumes:
+        - ./frontend:/app

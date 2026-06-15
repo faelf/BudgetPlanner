@@ -1,7 +1,13 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+data = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "API is running successfully!"}
+USER = {
+    "id": 1,
+    "first_name": "Rafael",
+    "last_name": "Ferreira",
+}
+
+@data.get("/api/user", tags=["Users"])
+def read_user():
+    return USER
