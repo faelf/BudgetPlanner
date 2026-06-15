@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-data = FastAPI()
+app = FastAPI()
 
 USER = {
     "id": 1,
@@ -8,6 +8,6 @@ USER = {
     "last_name": "Ferreira",
 }
 
-@data.get("/api/user", tags=["Users"])
+@app.get("/api/user", tags=["Users"])
 def read_user():
     return USER
