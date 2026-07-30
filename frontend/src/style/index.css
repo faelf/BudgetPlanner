@@ -1,8 +1,10 @@
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 :root {
-  --bg-body: hsl(0 0% 10%);
-  --text: hsl(0 0% 85%);
+  --bg-body:  hsl(0 0% 95%);
+  --text:     hsl(0 0% 10%);
+  --svg-size:   1rem;
+  --svg-stroke: 2;
 }
 
 body {
@@ -14,37 +16,68 @@ body {
 }
 
 #app {
-  display: grid;
-  grid-template-areas:
-    "page-header page-header"
-    "sidenav main-content";
-  grid-template-columns: 200px 1fr; 
-  grid-template-rows: auto 1fr;
   min-height: 100vh;
 }
 
 .main-header {
   grid-area: page-header;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
   padding: 0.5rem;
+}
+
+.header-btn {
+  --svg-size: 1.5rem;
+  color: var(--text);
+  background: none;
+  border: 1px solid transparent;
+  padding: 0.5rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+}
+
+.header-btn:hover {
   background: hsla(0 0% 0% / 0.35);
 }
 
+.header-logo { padding: 0; margin-block: 0.25rem; font-size: 1.5rem; margin-inline-end: auto; }
+
 .sidenav {
-  grid-area: sidenav;
+  background: hsl(0 0% 70%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  inline-size: 250px;
+  transform: translateX(-100%);
+  transition: transform 300ms ease;
+}
+
+.sidenav[data-expanded="true"] {
+  transform: translateX(0);
+}
+
+.sidenav-header {
+  display: flex;
+  justify-content: end;
   padding: 0.5rem;
-  
 }
 
 .sidenav-links {
   padding: 0.5rem;
-  background: hsla(0 0% 0% / 0.35);
-  border-radius: 0.5rem;
-  height: 100%;
 }
 
 .nav-btn {
-  display: inline-block;
-  width: 100%;
+  --svg-size:   1.2rem;
+  --svg-stroke: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   text-decoration: none;
@@ -57,5 +90,14 @@ body {
 
 .main-content { grid-area: main-content; padding: 0.5rem; }
 
-h1 { padding: 0; margin-block: 0.5rem; }
 h2 { padding: 0; margin: 0; }
+
+svg {
+  width: var(--svg-size);
+  height: var(--svg-size);
+  stroke-width: var(--svg-stroke);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
