@@ -1,29 +1,38 @@
-from fastapi import APIRouter
-from pydantic import BaseModel
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from database.session import get_db
+from models.users import User
+from schemas.users import UserCreate, UserResponse
 
 TAG = "Users"
 
-router = APIRouter(
-    prefix="/api",
-    tags=[TAG]
-)
+# Groups all routes under this prefix + docs tag.
+router = APIRouter( prefix="/api/users", tags=[TAG] )
 
-class User(BaseModel):  
-    id: int  
-    first_name: str  
-    last_name: str
 
-USER = {
-    "id": 1,
-    "first_name": "Rafael",
-    "last_name": "Ferreira",
-}
+@router.post("", response_model=UserResponse, status_code=201)
+def create_user(
+    user: UserCreate,
+    db: Session = Depends(get_db)
+):
+    """
+    POST /api/users
+    Creates a new user from the submitted
 
-@router.get(
-    "/user",
-    response_model=User,
-    summary="Get mock user",
-    description="Returns mock user object for testing purposes."
+    Request body, auto-validated against UserCreate schema
+    FastAPI calls get_db(), injects the yielded session, closes it after
+    """
+
+    # Build the ORM object in memory
+    db_user = User(
+        username=user.username,
+        email=user.email,
+        password_hash=user.password
     )
-def read_user():
-    return USER
+
+    # Write in the database
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+
+    return db_user

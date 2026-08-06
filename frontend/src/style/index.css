@@ -92,6 +92,17 @@ body {
 
 h2 { padding: 0; margin: 0; }
 
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+input, button {
+  border: 1px solid black;
+  border-radius: 0px;
+  padding: 0.5rem;
+}
+
 svg {
   width: var(--svg-size);
   height: var(--svg-size);
