@@ -1,0 +1,100 @@
+.main-auth {
+  block-size: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-md);
+}
+
+.form {
+  container: form / inline-size;
+  display: grid;
+  inline-size: min(100%, 450px);
+  border: var(--border-size) solid var(--border-clr);
+  border-radius: var(--br-xl);
+  background: var(--card-bg);
+  box-shadow:
+  inset 2px 2px 2px hsl(0 0% 100%),
+  2px 2px 2px hsl(0 0% 0% / 0.15);
+}
+
+.form__title {
+  margin-block: 0;
+  margin-block-end: var(--sp-sm);
+  padding: var(--sp-md) var(--sp-lg);
+}
+
+.form__body {
+  display: grid;
+  gap: var(--sp-md);
+  padding: var(--sp-sm) var(--sp-lg);
+}
+
+.form__description {
+  margin-block-start: 0;
+  margin-block-end: var(--sp-xs);
+  padding: var(--sp-lg);
+  text-align: center;
+}
+
+.input {
+  position: relative;
+}
+
+.input__icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  inline-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input__icon svg {
+  --_size: 1.25em;
+  height: var(--_size);
+  width: var(--_size);
+  stroke: var(--body-fg-muted);
+  stroke-width: 1.5;
+}
+
+.input:has(.input__icon) .input__field {
+  padding-inline-start: 2.25rem;
+}
+
+.input__field {
+  background: var(--card-bg);
+  width: 100%;
+  border: var(--border-size) solid var(--border-clr);
+  border-radius: var(--br-md);
+  line-height: 1.6;
+  padding: var(--sp-sm) var(--sp-md);
+  font-size: 1rem;
+}
+
+.input__field::placeholder {
+  color: var(--body-fg-muted);
+}
+
+.input__field:focus-visible {
+  outline: none;
+  border-color: hsl(0 0% 0% /0.5);
+  box-shadow: 0 0 0 3px hsl(0 0% 0% / 0.15);
+}
+
+.form__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+@container form (min-width: 400px) {
+  .form__actions {
+    flex-direction: row;
+  }
+
+  .form__actions > * {
+    flex: 1;
+  }
+}

@@ -1,0 +1,41 @@
+.sidenav {
+  background: var(--card-bg);
+  border-right: var(--border-size) solid var(--border-clr);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  inline-size: 250px;
+  transform: translateX(-100%);
+  transition: transform 300ms ease;
+}
+
+.sidenav[data-expanded="true"] {
+  transform: translateX(0);
+}
+
+.sidenav-header {
+  display: flex;
+  justify-content: end;
+  padding: 0.5rem;
+}
+
+.sidenav-links {
+  padding: 0.5rem;
+}
+
+.nav-btn {
+  --svg-size:   1.2rem;
+  --svg-stroke: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--body-fg);
+}
+
+.nav-btn:hover {
+  background: var(--body-bg);
+}

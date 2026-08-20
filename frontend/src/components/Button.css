@@ -1,0 +1,20 @@
+.btn {
+  border: var(--border-size) solid var(--border-clr);
+  border-radius: var(--br-md);
+  line-height: 1.6;
+  padding: var(--sp-sm) var(--sp-md);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.btn:focus-visible {
+  outline: none;
+  border-color: hsl(0 0% 0%);
+  box-shadow: 0 0 6px hsl(0 0% 0% / 0.35);
+}
+
+.btn--primary {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+}
