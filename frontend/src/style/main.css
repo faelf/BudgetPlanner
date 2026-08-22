@@ -11,6 +11,7 @@
   --card-bg:              hsl(0 0% 95%);
   --h1:                   hsl(0 0% 10%);
 
+  --red:                  hsl(355, 100%, 45%);
   --blue:                 hsl(215 100% 50%);
   --blue-fg:              hsl(215 100% 20%);
 
@@ -27,9 +28,14 @@
   --sp-lg: 1.5rem;
   --sp-xl: 2rem;
 
+  /* Font Size */
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.3rem;
+
   /* Border */
   --border-size: 1px;
-  --border-clr: hsl(0 0% 0% / 0.15);
+  --border-clr: hsl(0 0% 80% / 1);
 
   /* Border radius */
   --br-sm: 0.5rem;
@@ -47,12 +53,21 @@ body {
   font-size: 1rem;
 }
 
+.main-content {
+  grid-area: main-content;
+}
+
 h1, .h1 { font-size: 2.5rem; color: var(--h1); }
 h2, .h2 { font-size: 2.25rem; color: var(--h1); }
 h3, .h3 { font-size: 2rem; color: var(--h1); }
 h4, .h4 { font-size: 1.75rem; color: var(--h1); }
 h5, .h5 { font-size: 1.5rem; color: var(--h1); }
 h6, .h6 { font-size: 1.2rem; color: var(--h1); }
+
+p {
+  margin: 0;
+  margin-block-end: var(--sp-sm);
+}
 
 a {
   text-decoration: none;

@@ -1,40 +1,43 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, DeclarativeBase
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
 from core.config import settings
 
 class Base(DeclarativeBase):
     """
-    Shared base:
-    All models must inherit from THIS so create_all() finds their tables.
+    Shared base class for all SQLAlchemy models.
+
+    All models must inherit from this class so their tables
+    are registered with SQLAlchemy metadata.
     """
     pass
 
 connect_args = {}
 
-if settings.DATABASE_URL.startswith("sqlite"):
+if settings.DATABASE_URL.startswith('sqlite'):
     connect_args = {
-        # Allow SQLite connection to be used across threads
-        "check_same_thread": False  
+        # Allow SQLite connections to be used across threads.
+        'check_same_thread': False,
     }
 
 engine = create_engine(
     settings.DATABASE_URL,
-    connect_args = connect_args
+    connect_args = connect_args,
 )
 
-SessionLocal = sessionmaker(
-    autocommit = False,  # we control commits explicitly (db.commit())
-    autoflush = False,   # don't auto-flush pending changes before every query
-    bind = engine
+LocalSession = sessionmaker(
+    autocommit = False,
+    autoflush = False,
+    bind = engine,
 )
 
-def get_db():
+def get_database():
     """
-    FastAPI dependency:
-    Yields a DB session per request, closes it after (even on error).
+    FastAPI dependency that provides a database session per request.
+
+    The session is closed after the request completes, even if an exception occurs.
     """
-    db = SessionLocal()
+    database = LocalSession()
     try:
-        yield db
+        yield database
     finally:
-        db.close()
+        database.close()

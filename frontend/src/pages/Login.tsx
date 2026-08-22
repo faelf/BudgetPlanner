@@ -1,12 +1,57 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../components/Button.tsx';
+
+interface LoginForm {
+  username: string;
+  password: string;
+}
 
 function Login() {
   const navigate = useNavigate();
 
-  function submit(event: React.SubmitEvent<HTMLFormElement>): void {
+  const [error, setError] = useState<string | null>(null);
+
+  const [form, setForm] = useState<LoginForm>({
+    username: "",
+    password: "",
+  });
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+
+    setError(null);
+  }
+
+  async function submit( event: React.SubmitEvent<HTMLFormElement> ): Promise<void> {
     event.preventDefault();
-    navigate('/dashboard');
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.detail);
+        return;
+      }
+
+      navigate('/dashboard');
+
+    } catch {
+      setError('Unable to connect to the server');
+    }
   }
   
   return (
@@ -17,7 +62,7 @@ function Login() {
       <div className='form__body'>
 
         <div className='input'>
-          <input className='input__field' type='text' name='username' id='username-input' placeholder='Enter your username' autoComplete='username'/>
+          <input className='input__field' type='text' name='username' id='username-input' placeholder='Enter your username' autoComplete='username' value={form.username} onChange={handleChange}/>
           <div className='input__icon'>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
               <circle cx='12' cy='8' r='5'/>
@@ -27,7 +72,7 @@ function Login() {
         </div>
 
         <div className='input'>
-          <input className='input__field' type='password' name='password' id='password-input' placeholder='Enter your password' autoComplete='current-password'/>
+          <input className='input__field' type='password' name='password' id='password-input' placeholder='Enter your password' autoComplete='current-password' value={form.password} onChange={handleChange}/>
           <div className='input__icon'>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
               <path d='M12.4 2.7a2.5 2.5 0 0 1 3.4 0l5.5 5.5a2.5 2.5 0 0 1 0 3.4l-3.7 3.7a2.5 2.5 0 0 1-3.4 0L8.7 9.8a2.5 2.5 0 0 1 0-3.4z'/>
@@ -38,8 +83,9 @@ function Login() {
         </div>
 
         <Button type='submit' variant='primary'>Login</Button>
-
       </div>
+      
+      {error && (<p className='form__error'>{error}</p>)}
 
       <p className='form__description'>Don't have an account ? <Link to='/auth/register'>Register</Link></p>
     </form>

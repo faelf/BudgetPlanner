@@ -1,41 +1,92 @@
 .sidenav {
+  grid-area: sidenav;
   background: var(--card-bg);
   border-right: var(--border-size) solid var(--border-clr);
+  padding: var(--sp-sm);
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  inline-size: 250px;
+  inline-size: 100%;
   transform: translateX(-100%);
   transition: transform 300ms ease;
+  z-index: 999;
 }
 
 .sidenav[data-expanded="true"] {
   transform: translateX(0);
 }
 
-.sidenav-header {
-  display: flex;
-  justify-content: end;
-  padding: 0.5rem;
-}
-
-.sidenav-links {
-  padding: 0.5rem;
-}
-
-.nav-btn {
-  --svg-size:   1.2rem;
-  --svg-stroke: 1.5;
+.sidenav__header {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: space-between;
+  gap: var(--sp-sm);
+}
+
+.sidenav__title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: hsl(0 0% 0%);
+  padding: var(--sp-sm) var(--sp-md);
+  border-radius: var(--br-sm);
+  flex: 1;
+}
+
+.sidenav__btn {
+  --svg-size: 1.5rem;
+  color: var(--body-fg);
+  background: none;
+  border: 1px solid transparent;
   padding: 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 24px;
+  corner-shape: squircle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+}
+
+.sidenav__btn:hover {
+  background: var(--body-bg);
+}
+
+.sidenav__divider {
+  block-size: 1px;
+  inline-size: 100%;
+  background: var(--border-clr);
+  border-radius: var(--br-md);
+  margin: var(--sp-sm) 0;
+}
+
+.sidenav__link {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: var(--sp-md);
+  border: 1px solid transparent;
+  border-radius: var(--br-md);
+  cursor: pointer;
   text-decoration: none;
   color: var(--body-fg);
 }
 
-.nav-btn:hover {
+.sidenav__link svg {
+  --svg-size:   1.5rem;
+  --svg-stroke: 2;
+  transform: 0 -1px;
+}
+
+.sidenav__btn:hover, .sidenav__btn:focus-visible,
+.sidenav__link:hover, .sidenav__link:focus-visible {
+  outline: none;
+  border: 1px solid transparent;
   background: var(--body-bg);
+}
+
+.sidenav__link:hover svg, .sidenav__link:focus-visible svg {
+  fill: var(--btn-bg);
+  stroke: var(--btn-bg);
 }

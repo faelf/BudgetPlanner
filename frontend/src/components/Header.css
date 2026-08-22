@@ -1,20 +1,21 @@
 .main-header {
-  grid-area: page-header;
+  grid-area: main-header;
   background: var(--card-bg);
   border-bottom: var(--border-size) solid var(--border-clr);
   display: flex;
-  gap: 0.5rem;
   align-items: center;
-  padding: 0.5rem;
+  justify-content: space-between;
+  padding: var(--sp-sm);
 }
 
-.header-btn {
+.main-header__burger-btn {
   --svg-size: 1.5rem;
   color: var(--body-fg);
   background: none;
   border: 1px solid transparent;
   padding: 0.5rem;
-  border-radius: 50px;
+  border-radius: 24px;
+  corner-shape: squircle;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,9 +23,148 @@
   margin: 0;
 }
 
-.header-btn:hover {
+.main-header__burger-btn:hover {
   background: var(--body-bg);
-  border: var(--border-size) solid var(--border-clr);
 }
 
-.header-logo { padding: 0; margin-block: 0.25rem; font-size: 1.5rem; margin-inline-end: auto; }
+.user-menu {
+  position: relative;
+  anchor-scope: --user-menu;
+}
+
+.user-menu__btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.user-menu__prof-pic {
+  --svg-size: 1.5rem;
+  anchor-name: --user-menu;
+  color: var(--body-fg);
+  background: none;
+  border: var(--border-size) solid var(--border-clr);
+  padding: 0.5rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.user-menu__prof-pic svg {
+  stroke: var(--border-clr);
+}
+
+.user-menu__indicator {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  pointer-events: none;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.user-menu__indicator svg {
+  display: block;
+  --svg-size: 1.2rem;
+  fill: var(--text);
+  stroke: var(--border-clr);
+}
+
+.user-menu__dialog {
+  position-anchor: --user-menu;
+  position: absolute;
+  inset: auto;
+  top: anchor(bottom);
+  left: anchor(left);
+  position-try-fallbacks: --left, --right, --bottom-center, --bottom-left, --bottom-right;
+  min-inline-size: min(95%, 250px);
+  border: var(--border-size) solid var(--border-clr);
+  padding: var(--sp-sm);
+  border-radius: var(--br-md);
+}
+
+.user-menu__dialog[open] {
+  display: grid;
+}
+
+.user-menu__header {
+  display: grid;
+  padding: var(--sp-sm) var(--sp-md);
+}
+
+.user-menu__username {
+  color: var(--body-fg);
+  font-size: var(--fs-lg);
+}
+
+.user-menu__email {
+  color: var(--body-fg-muted);
+  font-size: var(--fs-sm);
+}
+
+.user-menu__item {
+  padding: var(--sp-sm);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  color: var(--body-fg);
+  inline-size: 100%;
+  background: none;
+  border: var(--border-size) solid transparent;
+  font-weight: 400;
+  border-radius: var(--br-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+.user-menu__item svg {
+  --svg-size: 1.3rem;
+  flex-shrink: 0;
+  transform: translateY(1px);
+}
+
+.user-menu__item:hover {
+  background: var(--card-bg);
+}
+
+.user-menu__divider {
+  block-size: 1px;
+  inline-size: 100%;
+  background: var(--border-clr);
+  border-radius: var(--br-md);
+  margin: var(--sp-sm) 0;
+}
+
+@position-try --left {
+  inset: auto;
+  top: calc(anchor(bottom) + 2px);
+  left: anchor(left);
+}
+
+@position-try --right {
+  inset: auto;
+  top: calc(anchor(bottom) + 2px);
+  right: anchor(right);
+}
+
+@position-try --bottom-center {
+  inset: auto;
+  bottom: calc(anchor(top) + 2px);
+  justify-self: anchor-center;
+}
+
+@position-try --bottom-left {
+  inset: auto;
+  bottom: calc(anchor(top) + 2px);
+  left: anchor(left);
+}
+
+@position-try --bottom-right {
+  inset: auto;
+  bottom: calc(anchor(top) + 2px);
+  right: anchor(right);
+}

@@ -26,8 +26,20 @@
 
 .form__body {
   display: grid;
-  gap: var(--sp-md);
+  gap: var(--sp-lg);
   padding: var(--sp-sm) var(--sp-lg);
+}
+
+.form__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.form__error {
+  color: var(--red);
+  padding: var(--sp-sm) var(--sp-lg);
+  font-size: var(--fs-sm);
 }
 
 .form__description {
@@ -35,6 +47,7 @@
   margin-block-end: var(--sp-xs);
   padding: var(--sp-lg);
   text-align: center;
+  font-size: var(--fs-sm);
 }
 
 .input {
@@ -83,10 +96,22 @@
   box-shadow: 0 0 0 3px hsl(0 0% 0% / 0.15);
 }
 
-.form__actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-md);
+.input__field--error {
+  stroke: var(--red);
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.input:has(.input__field--error) .input__icon svg {
+  stroke: var(--red);
+}
+
+.input__error {
+  position: absolute;
+  bottom: -1.1rem;
+  color: var(--red);
+  margin: 0;
+  font-size: 0.85rem;
 }
 
 @container form (min-width: 400px) {
