@@ -11,7 +11,7 @@
   --card-bg:              hsl(0 0% 95%);
   --h1:                   hsl(0 0% 10%);
 
-  --red:                  hsl(355, 100%, 45%);
+  --red:                  hsl(355 100% 45%);
   --blue:                 hsl(215 100% 50%);
   --blue-fg:              hsl(215 100% 20%);
 
@@ -84,3 +84,5 @@ svg {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+.spacer { flex: 1; }

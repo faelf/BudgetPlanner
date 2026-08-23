@@ -1,5 +1,5 @@
 .main-header {
-  grid-area: main-header;
+  grid-area: header-main;
   background: var(--card-bg);
   border-bottom: var(--border-size) solid var(--border-clr);
   display: flex;
@@ -167,4 +167,10 @@
   inset: auto;
   bottom: calc(anchor(top) + 2px);
   right: anchor(right);
+}
+
+@media screen and (min-width: 576px) {
+  .main-header__burger-btn {
+    display: none;
+  }
 }

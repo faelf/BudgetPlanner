@@ -40,9 +40,9 @@ function App() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <>
-      <Sidenav closeSidebar={() => setExpanded(false)} expanded={expanded} />
-      <Header openSidebar={() => setExpanded(true)} loggedUser={loggedUser} />
+    <div className='logged-in'>
+      <Sidenav closeSidebar={() => setExpanded(prev => !prev)} expanded={expanded} />
+      <Header openSidebar={() => setExpanded(prev => !prev)} loggedUser={loggedUser} />
       <main className='main-content'>
         <Routes>
           <Route path='/' element={<Dashboard />} />
@@ -50,7 +50,7 @@ function App() {
           <Route path='profile' element={<Profile />} />
         </Routes>
       </main>
-    </>
+    </div>
   );
 }
 

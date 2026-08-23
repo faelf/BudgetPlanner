@@ -25,6 +25,8 @@ function Header({ openSidebar, loggedUser }: HeaderProps) {
         </svg>
       </button>
 
+      <div className="spacer"></div>
+
       <div className='user-menu'>
 
         <button className='user-menu__btn' popoverTarget='user-menu' popoverTargetAction='toggle'>
@@ -54,7 +56,7 @@ function Header({ openSidebar, loggedUser }: HeaderProps) {
               <path d='M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z'/>
               <circle cx='10' cy='8' r='5'/>
             </svg>
-            Profile
+            <span>Profile</span>
           </Link>
           <Link to='/auth/login' className='user-menu__item'>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
@@ -62,7 +64,7 @@ function Header({ openSidebar, loggedUser }: HeaderProps) {
               <path d='M21 12H9'/>
               <path d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/>
             </svg>
-            Log out
+            <span>Log out</span>
           </Link>
         </dialog>
       </div>
