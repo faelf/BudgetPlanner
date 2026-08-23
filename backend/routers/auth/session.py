@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends
 from core.dependencies import get_current_session
 from models.session import UserSession
+from schemas.general import DescriptionResponse
 
 router = APIRouter()
 
@@ -8,9 +9,11 @@ ROUTER_CONFIG = {
     'summary': 'Get the current session',
     'responses': {
         200: {
+            'model': DescriptionResponse,
             'description': 'Current session information.',
         },
         401: {
+            'model': DescriptionResponse,
             'description': 'Authentication is required.',
         },
     },

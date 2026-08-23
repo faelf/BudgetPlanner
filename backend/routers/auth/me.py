@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends
 from core.dependencies import get_current_user
 from models.user import User
 from schemas.user import UserResponse
+from schemas.general import DescriptionResponse
 
 # Defined in __init__.py
 router = APIRouter()
@@ -16,6 +17,7 @@ ROUTER_CONFIG = {
             'description': 'The currently authenticated user.',
         },
         401: {
+            'model': DescriptionResponse,
             'description': 'Authentication is required.',
         },
     },

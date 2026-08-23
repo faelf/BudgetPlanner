@@ -7,6 +7,7 @@ from database.session import get_database
 from models.session import UserSession
 from models.user import User
 from schemas.user import UserLogin, UserResponse
+from schemas.general import DescriptionResponse
 
 # Defined in __init__.py
 router = APIRouter()
@@ -21,6 +22,7 @@ ROUTER_CONFIG = {
             'description': 'User authenticated successfully and a new session was created.',
         },
         401: {
+            'model': DescriptionResponse,
             'description': 'Invalid username or password.',
         },
     },
