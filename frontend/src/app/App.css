@@ -1,6 +1,22 @@
+.logged-in {
+  block-size: 100svh;
+  display: grid;
+  grid-template-areas:
+    "header-main"
+    "main-content"
+  ;
+  grid-template-rows: auto 1fr;
+}
+
 .main-content {
   grid-area: main-content;
   padding: 0.5rem;
+  overflow-y: auto;
+}
+
+.main-content__inner {
+  max-inline-size: 1200px;
+  margin-inline: auto;
 }
 
 @media screen and (min-width: 576px) {

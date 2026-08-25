@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import Button from '../components/Button.tsx';
+import Button from '../components/ui/Button.tsx';
 
 interface RegisterForm {
   username: string;

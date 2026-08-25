@@ -10,13 +10,13 @@
 
   --card-bg:              hsl(0 0% 95%);
   --h1:                   hsl(0 0% 10%);
+  
+  --primary-bg:           hsl(0 0% 15%);
+  --primary-fg:           hsl(0 0% 95%);
 
   --red:                  hsl(355 100% 45%);
   --blue:                 hsl(215 100% 50%);
   --blue-fg:              hsl(215 100% 20%);
-
-  --btn-bg:               hsl(0 0% 15%);
-  --btn-fg:               hsl(0 0% 95%);
 
   --svg-size:   1rem;
   --svg-stroke: 2;
@@ -57,8 +57,15 @@ body {
   grid-area: main-content;
 }
 
-h1, .h1 { font-size: 2.5rem; color: var(--h1); }
-h2, .h2 { font-size: 2.25rem; color: var(--h1); }
+h1, .h1 {
+  font-size: 2.5rem; color: var(--h1);
+}
+h2, .h2 {
+  margin: 0;
+  margin-block-end: var(--sp-sm);
+  font-size: 2.25rem;
+  color: var(--h1);
+}
 h3, .h3 { font-size: 2rem; color: var(--h1); }
 h4, .h4 { font-size: 1.75rem; color: var(--h1); }
 h5, .h5 { font-size: 1.5rem; color: var(--h1); }
@@ -67,6 +74,8 @@ h6, .h6 { font-size: 1.2rem; color: var(--h1); }
 p {
   margin: 0;
   margin-block-end: var(--sp-sm);
+  text-align: justify;
+  hyphens: auto;
 }
 
 a {

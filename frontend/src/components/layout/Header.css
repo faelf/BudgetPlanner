@@ -1,11 +1,11 @@
 .main-header {
   grid-area: header-main;
   background: var(--card-bg);
-  border-bottom: var(--border-size) solid var(--border-clr);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--sp-sm);
+  border-bottom: var(--border-size) solid var(--border-clr);
 }
 
 .main-header__burger-btn {
@@ -91,7 +91,9 @@
 }
 
 .user-menu__header {
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: var(--sp-sm) var(--sp-md);
 }
 

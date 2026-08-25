@@ -6,8 +6,6 @@
 .nav-main__inner {
   grid-area: nav-main;
   background: var(--card-bg);
-  border-right: var(--border-size) solid var(--border-clr);
-  padding: var(--sp-sm);
   position: fixed;
   top: 0;
   left: 0;
@@ -16,8 +14,8 @@
   transform: translateX(-100%);
   transition: transform 0.35s ease, inline-size 0.35s ease; 
   z-index: 999;
-  overflow: hidden; 
   white-space: nowrap;
+  border-right: var(--border-size) solid var(--border-clr);
 }
 
 .nav-main__btn svg {
@@ -40,6 +38,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--sp-sm);
+  padding: var(--sp-sm);
 }
 
 .nav-main__title {
@@ -68,6 +67,10 @@
 
 .nav-main__btn:hover {
   background: var(--body-bg);
+}
+
+.nav-main__links {
+  padding: var(--sp-sm);
 }
 
 .nav-main__divider {
@@ -109,8 +112,8 @@
 }
 
 .nav-main__link:hover svg, .nav-main__link:focus-visible svg {
-  fill: var(--btn-bg);
-  stroke: var(--btn-bg);
+  fill: var(--primary-bg);
+  stroke: var(--primary-bg);
 }
 
 @media screen and (min-width: 576px) {
@@ -134,6 +137,21 @@
   .nav-main .nav-main__header span,
   .nav-main .nav-main__link span {
     display: none;
+  }
+
+  .nav-main__link {
+    position: relative;
+  }
+
+  .nav-main[data-expanded="false"] .nav-main__link:hover span {
+    position: absolute;
+    display: block;
+    left: 100%;
+    margin-inline-start: calc(var(--sp-sm) + var(--border-size));
+    background: var(--primary-bg);
+    color: var(--primary-fg);
+    padding: var(--sp-sm) var(--sp-md);
+    border-radius: var(--br-md);
   }
 
   .nav-main[data-expanded="true"] .nav-main__header span,

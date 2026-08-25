@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 
 interface User {
@@ -13,6 +13,21 @@ interface HeaderProps {
 }
 
 function Header({ openSidebar, loggedUser }: HeaderProps) {
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    const response = await fetch('/api/auth/logout', {
+      method: 'POST',
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      console.log('Logout failed');
+      return;
+    }
+
+    navigate('/auth/login');
+  }
 
   return (
     <header className='main-header'>
@@ -58,14 +73,14 @@ function Header({ openSidebar, loggedUser }: HeaderProps) {
             </svg>
             <span>Profile</span>
           </Link>
-          <Link to='/auth/login' className='user-menu__item'>
+          <button onClick={handleLogout} className='user-menu__item'>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
               <path d='m16 17 5-5-5-5'/>
               <path d='M21 12H9'/>
               <path d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/>
             </svg>
             <span>Log out</span>
-          </Link>
+          </button>
         </dialog>
       </div>
     </header>

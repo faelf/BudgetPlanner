@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-import Button from '../components/Button.tsx';
+import Button from '../components/ui/Button.tsx';
 
 interface LoginForm {
   username: string;
@@ -37,6 +37,7 @@ function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(form),
       });
 
