@@ -24,7 +24,7 @@ ROUTER_CONFIG = {
     },
 }
 
-@router.post('/', **ROUTER_CONFIG)
+@router.post('/create', **ROUTER_CONFIG)
 def create_user(user: UserCreate, db: Session = Depends(get_database)):
     """
     # Creates a new user account

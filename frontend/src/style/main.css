@@ -4,19 +4,88 @@
 }
 
 :root {
-  --body-bg:              hsl(0 0% 90%);
-  --body-fg:              hsl(0 0% 20%);
-  --body-fg-muted:        hsl(0 0% 50%);
+  --body-bg:                     hsl(0 0% 85%);
+  --body-fg:                     hsl(0 0% 20%);
+  --body-fg-muted:               hsl(0 0% 50%);
+  --card-bg:                     hsl(0 0% 90%);
+  --heading-primary:             hsl(0 0% 10%);
+  --input-bg:                    hsl(0 0% 95%);
+  --input-fg:                    hsl(0 0% 15%);
+  --input-border:                hsl(0 0% 70% / 0.5);
+  --input-shadow:
+    inset 2px 2px 2px            hsl(0 0% 100%),
+    2px 2px 2px                  hsl(0 0% 0% / 0.15);
+  --input-shadow-focus:
+    2px 2px 2px                  hsl(0 0% 100% / 0.5),
+    inset 2px 2px 2px            hsl(0 0% 0% / 0.15);
+  --primary-bg:                  hsl(0 0% 15%);
+  --primary-fg:                  hsl(0 0% 100%);
+  --primary-border:              hsl(0 0% 24%);
+  --primary-shadow:
+    inset 0 1px 0 0              hsl(0 0% 100% / 0.18),
+    inset 0 -1px 0 0             hsl(0 0% 0% / 0.5),
+    0 1px 2px 0                  hsl(0 0% 0% / 0.35),
+    0 4px 10px -1px              hsl(0 0% 0% / 0.4);
+  --primary-focus-ring:          hsl(0 0% 15%);
+  --primary-focus-offset:        hsl(0 0% 100%);
 
-  --card-bg:              hsl(0 0% 95%);
-  --h1:                   hsl(0 0% 10%);
-  
-  --primary-bg:           hsl(0 0% 15%);
-  --primary-fg:           hsl(0 0% 95%);
-
-  --red:                  hsl(355 100% 45%);
-  --blue:                 hsl(215 100% 50%);
-  --blue-fg:              hsl(215 100% 20%);
+  --green-bg:                    hsl(152 76% 40%);
+  --green-fg:                    hsl(0 0% 100%);
+  --green-border:                hsl(152 60% 34%);
+  --green-shadow:
+    inset 0 1px 0 0              hsl(0 0% 100% / 0.35),
+    inset 0 -1px 0 0             hsl(152 70% 28% / 0.6),
+    0 1px 2px 0                  hsl(152 60% 15% / 0.2),
+    0 4px 8px -1px               hsl(152 60% 15% / 0.25);
+  --blue-bg:                     hsl(215 88% 52%);
+  --blue-fg:                     hsl(0 0% 100%);
+  --blue-border:                 hsl(215 75% 44%);
+  --blue-shadow:
+    inset 0 1px 0 0              hsl(0 0% 100% / 0.35),
+    inset 0 -1px 0 0             hsl(215 75% 36% / 0.6),
+    0 1px 2px 0                  hsl(215 80% 15% / 0.2),
+    0 4px 8px -1px               hsl(215 80% 15% / 0.25);
+  --yellow-bg:                   hsl(43 96% 56%);
+  --yellow-fg:                   hsl(45 30% 12%);
+  --yellow-border:               hsl(40 85% 45%);
+  --yellow-shadow:
+    inset 0 1px 0 0              hsl(0 0% 100% / 0.55),
+    inset 0 -1px 0 0             hsl(38 90% 38% / 0.5),
+    0 1px 2px 0                  hsl(40 80% 20% / 0.18),
+    0 4px 8px -1px               hsl(40 80% 20% / 0.22);
+  --red:                         hsl(355 85% 48%);
+  --red-bg:                      hsl(355 85% 48%);
+  --red-fg:                      hsl(0 0% 100%);
+  --red-border:                  hsl(355 75% 40%);
+  --red-shadow:
+    inset 0 1px 0 0              hsl(0 0% 100% / 0.35),
+    inset 0 -1px 0 0             hsl(355 75% 32% / 0.6),
+    0 1px 2px 0                  hsl(355 80% 15% / 0.2),
+    0 4px 8px -1px               hsl(355 80% 15% / 0.25);
+  --teal-bg:                     hsl(175 80% 33%);
+  --teal-fg:                     hsl(0 0% 100%);
+  --teal-border:                 hsl(175 70% 26%);
+  --teal-shadow:
+    inset 0 1px 0 0              hsl(0 0% 100% / 0.35),
+    inset 0 -1px 0 0             hsl(175 75% 20% / 0.6),
+    0 1px 2px 0                  hsl(175 80% 12% / 0.2),
+    0 4px 8px -1px               hsl(175 80% 12% / 0.25);
+  --pink-bg:                     hsl(330 80% 50%);
+  --pink-fg:                     hsl(0 0% 100%);
+  --pink-border:                 hsl(330 70% 40%);
+  --pink-shadow:
+    inset 0 1px 0 0              hsl(0 0% 100% / 0.35),
+    inset 0 -1px 0 0             hsl(330 75% 32% / 0.6),
+    0 1px 2px 0                  hsl(330 80% 15% / 0.2),
+    0 4px 8px -1px               hsl(330 80% 15% / 0.25);
+  --purple-bg:                   hsl(270 75% 52%);
+  --purple-fg:                   hsl(0 0% 100%);
+  --purple-border:               hsl(270 65% 42%);
+  --purple-shadow:
+    inset 0 1px 0 0              hsl(0 0% 100% / 0.35),
+    inset 0 -1px 0 0             hsl(270 70% 32% / 0.6),
+    0 1px 2px 0                  hsl(270 75% 15% / 0.2),
+    0 4px 8px -1px               hsl(270 75% 15% / 0.25);
 
   --svg-size:   1rem;
   --svg-stroke: 2;
@@ -58,24 +127,38 @@ body {
 }
 
 h1, .h1 {
-  font-size: 2.5rem; color: var(--h1);
-}
-h2, .h2 {
+  font-size: 2.5rem;
+  color: var(--heading-primary);
   margin: 0;
   margin-block-end: var(--sp-sm);
-  font-size: 2.25rem;
-  color: var(--h1);
 }
-h3, .h3 { font-size: 2rem; color: var(--h1); }
-h4, .h4 { font-size: 1.75rem; color: var(--h1); }
-h5, .h5 { font-size: 1.5rem; color: var(--h1); }
-h6, .h6 { font-size: 1.2rem; color: var(--h1); }
 
-p {
-  margin: 0;
+h2, .h2 {
+  font-size: 2.25rem;
+  color: var(--heading-primary);
   margin-block-end: var(--sp-sm);
   text-align: justify;
   hyphens: auto;
+}
+
+h3, .h3 {
+  font-size: 2rem;
+  color: var(--heading-primary);
+}
+
+h4, .h4 {
+  font-size: 1.75rem;
+  color: var(--heading-primary);
+}
+
+h5, .h5 {
+  font-size: 1.5rem;
+  color: var(--heading-primary);
+}
+
+h6, .h6 {
+  font-size: 1.2rem;
+  color: var(--heading-primary);
 }
 
 a {

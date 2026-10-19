@@ -12,12 +12,12 @@ function Navmain({ expanded, closeSidebar }: NavmainProps) {
     <nav className='nav-main' data-expanded={expanded}>
       <div className="nav-main__inner">
         <div className='nav-main__header'>
+          <span className='nav-main__title'>Budget Planner</span>
           <button className='nav-main__btn' onClick={closeSidebar}>
             <svg xmlns='http://www.w3.org/2000/svg'viewBox='0 0 24 24'>
               <path d='m15 18-6-6 6-6'/>
             </svg>
           </button>
-          <span className='nav-main__title'>Budget Planner</span>
         </div>
 
         <div className='nav-main__links'>

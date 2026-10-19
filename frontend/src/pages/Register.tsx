@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button.tsx';
 
 interface RegisterForm {
   username: string;
   email: string;
   password: string;
-}
+};
 
 type FormError = {
   field: string;
   message: string;
 };
 
-function Register() {
+export default function Register() {
 
   const [error, setError] = useState<FormError | null>(null);
 
@@ -26,21 +26,16 @@ function Register() {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
 
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setForm((prev) => ({ ...prev, [name]: value, }));
 
-    if (error?.field === name) {
-      setError(null);
-    }
+    if (error?.field === name) { setError(null); }
   }
 
   async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     
     try {
-      const response = await fetch('/api/user', {
+      const response = await fetch('/api/user/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,10 +45,7 @@ function Register() {
   
       const data = await response.json();
 
-      if (!response.ok) {
-        setError(data.detail);
-        return
-      }
+      if (!response.ok) { setError(data.detail); return }
 
     } catch (error) {
       setError({
@@ -64,16 +56,17 @@ function Register() {
   }
 
   return (
-    <form className='form' id='register-user' onSubmit={handleSubmit}>
-      <h2 className='form__title' >Register</h2>
+    <form className='form form--auth' id='register-user' onSubmit={handleSubmit}>
+
+      <div className='form__header'>
+        <h2 className='form__title'>Register</h2>
+      </div>
 
       <div className='form__body'>
 
         <div className='input'>
           <input
-            className={`input__field ${
-              error?.field === 'username' ? 'input__field--error' : ''
-            }`}
+            className={`input__field ${ error?.field === 'username' ? 'input__field--error' : '' }`}
             type='text'
             name='username'
             placeholder='Enter your username'
@@ -81,12 +74,6 @@ function Register() {
             onChange={handleChange}
             autoComplete='username'
           />
-
-          {error?.field === 'username' && (
-            <p className='input__error'>
-              {error.message}
-            </p>
-          )}
 
           <div className='input__icon'>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
@@ -96,18 +83,12 @@ function Register() {
           </div>
         </div>
 
-        
-
         <div className='input'>
           <input
             className={`input__field ${error?.field === 'email' ? 'input__field--error' : ''}`}
             type='email'
             name='email'
-            placeholder={
-              error?.field === 'email'
-                ? error.message
-                : 'Enter your email'
-            }
+            placeholder={ error?.field === 'email' ? error.message : 'Enter your email' }
             value={form.email}
             onChange={handleChange}
             autoComplete='email'
@@ -121,7 +102,15 @@ function Register() {
         </div>
 
         <div className='input'>
-          <input className='input__field' type='password' name='password' placeholder='Enter your password' value={form.password} onChange={handleChange} autoComplete="new-password" />
+          <input
+            className='input__field'
+            type='password'
+            name='password'
+            placeholder='Enter your password'
+            value={form.password}
+            onChange={handleChange}
+            autoComplete='new-password'
+          />
           <div className='input__icon'>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
               <path d='M12.4 2.7a2.5 2.5 0 0 1 3.4 0l5.5 5.5a2.5 2.5 0 0 1 0 3.4l-3.7 3.7a2.5 2.5 0 0 1-3.4 0L8.7 9.8a2.5 2.5 0 0 1 0-3.4z'/>
@@ -135,15 +124,13 @@ function Register() {
 
       </div>
 
-      {error?.field === 'form' && (
-        <p className='form__error'>
+      {error && (
+        <div className='form__error'>
           {error.message}
-        </p>
+        </div>
       )}
 
-      <p className='form__description'>Already have an account ? <Link to='/auth/login'>Login</Link></p>
+      <div className='form__description'>Already have an account ? <Link to='/auth/login'>Login</Link></div>
     </form>
   );
 }
-
-export default Register;

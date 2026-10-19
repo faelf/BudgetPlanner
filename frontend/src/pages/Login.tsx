@@ -56,9 +56,11 @@ function Login() {
   }
   
   return (
-    <form className='form' onSubmit={submit} autoComplete='on'>
+    <form className='form form--auth' onSubmit={submit} autoComplete='on'>
 
-      <h2 className='form__title'>Login</h2>
+      <div className="form__header">
+        <h2 className='form__title'>Login</h2>
+      </div>
 
       <div className='form__body'>
 
@@ -88,7 +90,7 @@ function Login() {
       
       {error && (<p className='form__error'>{error}</p>)}
 
-      <p className='form__description'>Don't have an account ? <Link to='/auth/register'>Register</Link></p>
+      <div className='form__description'>Don't have an account ? <Link to='/auth/register'>Register</Link></div>
     </form>
   )
 }
