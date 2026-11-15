@@ -54,7 +54,7 @@
 }
 
 .nav-main__btn:hover {
-  background: var(--body-bg);
+  background: hsl(0 0% 0% / 0.35);
 }
 
 .nav-main__links {
@@ -96,12 +96,7 @@
 .nav-main__link:hover, .nav-main__link:focus-visible {
   outline: none;
   border: 1px solid transparent;
-  background: var(--body-bg);
-}
-
-.nav-main__link:hover svg, .nav-main__link:focus-visible svg {
-  fill: var(--primary-bg);
-  stroke: var(--primary-bg);
+  background: var(--input-hover);
 }
 
 @media screen and (min-width: 576px) {

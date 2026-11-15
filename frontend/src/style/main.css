@@ -4,13 +4,19 @@
 }
 
 :root {
-  --body-bg:                     hsl(0 0% 85%);
+  --body-bg:
+    radial-gradient( circle at 15% 15%, hsl(190 100% 75% / 0.26), transparent 38% ),
+    radial-gradient( circle at 85% 20%, hsl(210 100% 72% / 0.22), transparent 42% ),
+    radial-gradient( circle at 25% 85%, hsl(170 80% 68% / 0.18), transparent 38% ),
+    radial-gradient( circle at 80% 80%, hsl(185 90% 72% / 0.14), transparent 45% ),
+    linear-gradient( 135deg, hsl(190 45% 98%) 0%, hsl(195 55% 96%) 45%, hsl(205 50% 94%) 100% );
   --body-fg:                     hsl(0 0% 20%);
   --body-fg-muted:               hsl(0 0% 50%);
-  --card-bg:                     hsl(0 0% 90%);
+  --card-bg:                     hsl(0 0% 97.5%);
   --heading-primary:             hsl(0 0% 10%);
   --input-bg:                    hsl(0 0% 95%);
   --input-fg:                    hsl(0 0% 15%);
+  --input-hover:                 hsl(0 0% 0% / 0.1);
   --input-border:                hsl(0 0% 70% / 0.5);
   --input-shadow:
     inset 2px 2px 2px            hsl(0 0% 100%),
@@ -126,39 +132,42 @@ body {
   grid-area: main-content;
 }
 
-h1, .h1 {
-  font-size: 2.5rem;
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   color: var(--heading-primary);
   margin: 0;
+  text-align: justify;
+  hyphens: auto;
+}
+
+h1, .h1 {
+  font-size: 2.5rem;
   margin-block-end: var(--sp-sm);
 }
 
 h2, .h2 {
   font-size: 2.25rem;
-  color: var(--heading-primary);
   margin-block-end: var(--sp-sm);
-  text-align: justify;
-  hyphens: auto;
 }
 
 h3, .h3 {
   font-size: 2rem;
-  color: var(--heading-primary);
 }
 
 h4, .h4 {
   font-size: 1.75rem;
-  color: var(--heading-primary);
 }
 
 h5, .h5 {
   font-size: 1.5rem;
-  color: var(--heading-primary);
 }
 
 h6, .h6 {
   font-size: 1.2rem;
-  color: var(--heading-primary);
+}
+
+p {
+  margin: 0;
+  margin-block-end: var(--sp-sm);
 }
 
 a {
@@ -178,3 +187,21 @@ svg {
 }
 
 .spacer { flex: 1; }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(0 0% 0% / 0.35);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(0 0% 0% / 0.7);
+}

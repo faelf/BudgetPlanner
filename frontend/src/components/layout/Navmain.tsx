@@ -10,7 +10,7 @@ type NavmainProps = {
 function Navmain({ expanded, closeSidebar }: NavmainProps) {
   return (
     <nav className='nav-main' data-expanded={expanded}>
-      <div className="nav-main__inner">
+      <div className='nav-main__inner'>
         <div className='nav-main__header'>
           <span className='nav-main__title'>Budget Planner</span>
           <button className='nav-main__btn' onClick={closeSidebar}>
@@ -31,7 +31,16 @@ function Navmain({ expanded, closeSidebar }: NavmainProps) {
             <span>Dashboard</span>
           </Link>
 
-          <div className="nav-main__divider"></div>
+          <div className='nav-main__divider'></div>
+
+          <Link to='/users' className='nav-main__link'>
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+              <path d='M18 21a8 8 0 0 0-16 0'/>
+              <circle cx='10' cy='8' r='5'/>
+              <path d='M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3'/>
+            </svg>
+            <span>Users</span>
+          </Link>
         </div>
       </div>
     </nav>

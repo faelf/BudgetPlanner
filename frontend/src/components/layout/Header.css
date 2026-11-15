@@ -1,16 +1,15 @@
 .main-header {
   grid-area: header-main;
-  background: var(--card-bg);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--sp-sm);
-  border-bottom: var(--border-size) solid var(--border-clr);
 }
 
 .main-header__burger-btn {
   --svg-size: 1.5rem;
-  color: var(--body-fg);
+  color: var(--input-fg);
   background: none;
   border: 1px solid transparent;
   padding: 0.5rem;
@@ -24,7 +23,7 @@
 }
 
 .main-header__burger-btn:hover {
-  background: var(--body-bg);
+  background: var(--input-hover);
 }
 
 .user-menu {
@@ -40,11 +39,11 @@
 }
 
 .user-menu__prof-pic {
-  --svg-size: 1.5rem;
+  --svg-size: 1.2rem;
   anchor-name: --user-menu;
-  color: var(--body-fg);
-  background: none;
-  border: var(--border-size) solid var(--border-clr);
+  color: var(--input-fg);
+  background: white;
+  border: 2px solid var(--input-fg);
   padding: 0.5rem;
   border-radius: 50px;
   display: flex;
@@ -54,7 +53,7 @@
 }
 
 .user-menu__prof-pic svg {
-  stroke: var(--border-clr);
+  color: var(--input-fg);
 }
 
 .user-menu__indicator {
@@ -69,8 +68,8 @@
 .user-menu__indicator svg {
   display: block;
   --svg-size: 1.2rem;
-  fill: var(--text);
-  stroke: var(--border-clr);
+  fill: var(--input-bg);
+  stroke: var(--input-fg);
 }
 
 .user-menu__dialog {
@@ -130,7 +129,7 @@
 }
 
 .user-menu__item:hover {
-  background: var(--card-bg);
+  background: var(--input-hover);
 }
 
 .user-menu__divider {

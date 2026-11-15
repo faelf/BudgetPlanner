@@ -5,6 +5,7 @@ import Navmain from '../components/layout/Navmain.tsx';
 import ProtectedRoute from '../components/routing/ProtectedRoute.tsx';
 import Dashboard from '../pages/Dashboard.tsx';
 import Profile from '../pages/Profile.tsx';
+import Users from '../pages/Users.tsx';
 
 import './App.css';
 
@@ -52,6 +53,7 @@ function App() {
               <Route path='/' element={<Dashboard />} />
               <Route path='dashboard' element={<Dashboard />} />
               <Route path='profile' element={<Profile />} />
+              <Route path='users' element={<Users />} />
             </Routes>
           </div>
         </main>
