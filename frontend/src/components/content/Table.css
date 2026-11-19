@@ -1,14 +1,20 @@
-table {
+.table {
+  border-collapse: collapse;
   width: 100%;
   text-align: left;
-  border: var(--border-size) solid var(--border-clr);
   border-radius: var(--br-md);
+  overflow: clip;
+  background: hsl(0 0% 100% / 0.5);
 }
 
-th {
+.table thead {
+  background: var(--border-clr);
+}
+
+.table th {
   padding: 0.5rem 1rem;
 }
 
-td {
+.table td {
   padding: 0.5rem 1rem;
 }

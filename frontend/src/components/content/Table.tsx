@@ -1,40 +1,22 @@
 import './Table.css';
 
-interface TableHead {
-  user: string;
-  email: string;
-}
-
-interface TableBody {
-  user: string;
-  email: string;
-}
-
-interface TableContent {
-  head: TableHead[];
-  body: TableBody[];
-}
-
 interface TableProps {
-  content: TableContent;
+  columns: { key: string; label: string }[];
+  rows: Record<string, string>[];
 }
 
-export default function Table({ content }: TableProps) {
+export default function Table({ columns, rows }: TableProps) {
   return (
-    <table>
+    <table className='table'>
       <thead>
-        {content.head.map((head, index) => (
-          <tr key={index}>
-            <th>{head.user}</th>
-            <th>{head.email}</th>
-          </tr>
-        ))}
+        <tr>
+          {columns.map((col) => <th key={col.key}>{col.label}</th>)}
+        </tr>
       </thead>
       <tbody>
-        {content.body.map((row, index) => (
+        {rows.map((row, index) => (
           <tr key={index}>
-            <td>{row.user}</td>
-            <td>{row.email}</td>
+            {columns.map((col) => <td key={col.key}>{row[col.key]}</td>)}
           </tr>
         ))}
       </tbody>
