@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../components/ui/Button.tsx';
 
 interface RegisterForm {
   username: string;
@@ -56,17 +55,20 @@ export default function Register() {
   }
 
   return (
-    <form className='form form--auth' id='register-user' onSubmit={handleSubmit}>
+    <form className='card w-50' id='register-user' onSubmit={handleSubmit} style={{ maxWidth: '100%', width: '350px' }}>
 
-      <div className='form__header'>
-        <h2 className='form__title'>Register</h2>
+      <div className='card-header'>
+        <h2 className='m-0'>Register</h2>
       </div>
 
-      <div className='form__body'>
+      <div className='card-body'>
 
-        <div className='input'>
+        <label className={`form-control form-adorn ${ error?.field === 'username' ? 'is-invalid' : '' } `}>
+          <div className='form-adorn-icon' aria-hidden='true'>
+            <i className="bi bi-person-fill"></i>
+          </div>
           <input
-            className={`input__field ${ error?.field === 'username' ? 'input__field--error' : '' }`}
+            className='form-ghost'
             type='text'
             name='username'
             placeholder='Enter your username'
@@ -74,18 +76,14 @@ export default function Register() {
             onChange={handleChange}
             autoComplete='username'
           />
+        </label>
 
-          <div className='input__icon'>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-              <circle cx='12' cy='8' r='5'/>
-              <path d='M20 21a8 8 0 0 0-16 0'/>
-            </svg>
+        <label className={`form-control form-adorn ${ error?.field === 'username' ? 'is-invalid' : '' } `}>
+          <div className='form-adorn-icon' aria-hidden='true'>
+            <i className="bi bi-envelope-fill"></i>
           </div>
-        </div>
-
-        <div className='input'>
           <input
-            className={`input__field ${error?.field === 'email' ? 'input__field--error' : ''}`}
+            className='form-ghost'
             type='email'
             name='email'
             placeholder={ error?.field === 'email' ? error.message : 'Enter your email' }
@@ -93,17 +91,14 @@ export default function Register() {
             onChange={handleChange}
             autoComplete='email'
           />
-          <div className='input__icon'>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-              <path d='m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7'/>
-              <rect x='2' y='4' width='20' height='16' rx='2'/>
-            </svg>
-          </div>
-        </div>
+        </label>
 
-        <div className='input'>
+        <label className='form-control form-adorn'>
+          <div className='form-adorn-icon' aria-hidden='true'>
+            <i className="bi bi-key-fill"></i>
+          </div>
           <input
-            className='input__field'
+            className='form-ghost'
             type='password'
             name='password'
             placeholder='Enter your password'
@@ -111,26 +106,19 @@ export default function Register() {
             onChange={handleChange}
             autoComplete='new-password'
           />
-          <div className='input__icon'>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-              <path d='M12.4 2.7a2.5 2.5 0 0 1 3.4 0l5.5 5.5a2.5 2.5 0 0 1 0 3.4l-3.7 3.7a2.5 2.5 0 0 1-3.4 0L8.7 9.8a2.5 2.5 0 0 1 0-3.4z'/>
-              <path d='m14 7 3 3'/>
-              <path d='m9.4 10.6-6.814 6.814A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814'/>
-            </svg>
-          </div>
-        </div>
-        
-        <Button type='submit' variant='primary'>Register</Button>
+        </label>
 
+        <button type='submit' className='theme-primary btn-solid w-100'>Register</button>
+
+        {error && (
+          <div className='alert theme-danger d-flex align-items-center'>
+              <i className="bi bi-exclamation-circle-fill"></i>
+              <p>{error.message}</p>
+            </div>
+        )}
+
+        <p className='text-center'>Already have an account ? <Link to='/auth/login'>Login</Link></p>
       </div>
-
-      {error && (
-        <div className='form__error'>
-          {error.message}
-        </div>
-      )}
-
-      <div className='form__description'>Already have an account ? <Link to='/auth/login'>Login</Link></div>
     </form>
   );
 }

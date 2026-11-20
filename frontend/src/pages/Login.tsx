@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-import Button from '../components/ui/Button.tsx';
 
 interface LoginForm {
   username: string;
@@ -56,41 +55,34 @@ function Login() {
   }
   
   return (
-    <form className='form form--auth' onSubmit={submit} autoComplete='on'>
+    <form className='card w-50' onSubmit={submit} autoComplete='on' style={{ maxWidth: '100%', width: '350px' }}>
 
-      <div className="form__header">
-        <h2 className='form__title'>Login</h2>
+      <div className='card-header'>
+        <h2 className='m-0'>Login</h2>
       </div>
 
-      <div className='form__body'>
-
-        <div className='input'>
-          <input className='input__field' type='text' name='username' id='username-input' placeholder='Enter your username' autoComplete='username' value={form.username} onChange={handleChange}/>
-          <div className='input__icon'>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-              <circle cx='12' cy='8' r='5'/>
-              <path d='M20 21a8 8 0 0 0-16 0'/>
-            </svg>
+      <div className='card-body'>
+        <label className='form-control form-adorn'>
+          <div className='form-adorn-icon' aria-hidden='true'>
+            <i className="bi bi-person-fill"></i>
           </div>
-        </div>
-
-        <div className='input'>
-          <input className='input__field' type='password' name='password' id='password-input' placeholder='Enter your password' autoComplete='current-password' value={form.password} onChange={handleChange}/>
-          <div className='input__icon'>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-              <path d='M12.4 2.7a2.5 2.5 0 0 1 3.4 0l5.5 5.5a2.5 2.5 0 0 1 0 3.4l-3.7 3.7a2.5 2.5 0 0 1-3.4 0L8.7 9.8a2.5 2.5 0 0 1 0-3.4z'/>
-              <path d='m14 7 3 3'/>
-              <path d='m9.4 10.6-6.814 6.814A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814'/>
-            </svg>
+          <input className='form-ghost' type='text' name='username' id='username-input' placeholder='Enter your username' autoComplete='username' value={form.username} onChange={handleChange}/>
+        </label>
+        <label className='form-control form-adorn'>
+          <div className='form-adorn-icon' aria-hidden='true'>
+            <i className="bi bi-key-fill"></i>
           </div>
-        </div>
+          <input className='form-ghost' type='password' name='password' id='password-input' placeholder='Enter your password' autoComplete='current-password' value={form.password} onChange={handleChange}/>
+        </label>
+        <button type='submit' className='theme-primary btn-solid w-100'>Login</button>
 
-        <Button type='submit' variant='primary'>Login</Button>
+        {error && ( <div className='alert theme-danger d-flex align-items-center'>
+            <i className="bi bi-exclamation-circle-fill"></i>
+            <p>{error}</p>
+          </div> )}
+
+        <div className='text-center'>Don't have an account ? <Link to='/auth/register'>Register</Link></div>
       </div>
-      
-      {error && (<p className='form__error'>{error}</p>)}
-
-      <div className='form__description'>Don't have an account ? <Link to='/auth/register'>Register</Link></div>
     </form>
   )
 }

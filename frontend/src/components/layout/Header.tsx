@@ -1,5 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
-import './Header.css';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 
 interface User {
   id: string;
@@ -7,12 +6,11 @@ interface User {
   email: string;
 }
 
-interface HeaderProps {
-  openSidebar: () => void;
+interface NavProps {
   loggedUser: User | null;
 }
 
-function Header({ openSidebar, loggedUser }: HeaderProps) {
+export default function Header({ loggedUser }: NavProps) {
   const navigate = useNavigate();
 
   async function handleLogout() {
@@ -30,61 +28,62 @@ function Header({ openSidebar, loggedUser }: HeaderProps) {
   }
 
   return (
-    <header className='main-header'>
+    <header className='d-flex justify-content-between align-items-center py-3 px-5 mb-5 bg-1'>
+      <h1 className='h4 mb-0' >Budget Planner</h1>
+      <nav data-bs-toggle='nav-overflow'>
+        <ul className='nav nav-pills'>
+          <li className='nav-item'>
+            <NavLink className='nav-link' to='/dashboard'>Dashboard</NavLink>
+          </li>
+          <li className='nav-item'>
+            <button className='nav-link' type='button' data-bs-toggle='menu' aria-expanded='false'>
+              Management
+            </button>
+            <div className='menu menu-translucent'>
+              <Link className='menu-item' to='/users'>
+                <i className="bi bi-people-fill"></i>
+                <span className="menu-item-content">
+                  Users
+                  <small className="menu-item-description">Manage users details</small>
+                </span>
+              </Link>
+            </div>
+          </li>
+        </ul>
+      </nav>
 
-      <button className='main-header__burger-btn' onClick={openSidebar}>
-        <svg xmlns='http://www.w3.org/2000/svg'viewBox='0 0 24 24'>
-          <path d='M4 5h16'/>
-          <path d='M4 12h16'/>
-          <path d='M4 19h16'/>
-        </svg>
+      {/* User Menu */}
+      <button className='theme-primary btn-solid btn-styled rounded-pill' type='button' data-bs-toggle='menu' aria-expanded='false'>
+        {loggedUser?.username || 'username'}
+        <span className='avatar avatar-xs'>
+          <img className='avatar-img' src='https://i.pravatar.cc/150?u=rafael' alt='User Picture' />
+        </span>
       </button>
-
-      <div className="spacer"></div>
-
-      <div className='user-menu'>
-
-        <button className='user-menu__btn' popoverTarget='user-menu' popoverTargetAction='toggle'>
-          <span className='user-menu__prof-pic'>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-              <circle cx='12' cy='8' r='5' />
-              <path d='M20 21a8 8 0 0 0-16 0' />
-            </svg>
+      <div className='menu menu-translucent'>
+        <Link className='menu-item' to='/profile'>
+          <i className="bi bi-person-circle"></i>
+          <span className="menu-item-content">
+            Profile
+            <small className="menu-item-description">Edit your personal information</small>
           </span>
-          <span className='user-menu__indicator'>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-              <circle cx='12' cy='12' r='10'/>
-              <path d='m16 10-4 4-4-4'/>
-            </svg>
+        </Link>
+        <button className="menu-item" type="button">
+          <i className="bi bi-moon-stars-fill"></i>
+          <span className="menu-item-content">
+            Dark
+            <small className="menu-item-description">Change the page theme</small>
           </span>
         </button>
-
-        <dialog id='user-menu' className='user-menu__dialog' popover=''>
-          <div className='user-menu__header'>
-            <span className='user-menu__username'>{loggedUser?.username || 'username'}</span>
-            <span className='user-menu__email'>{loggedUser?.email || 'example@mail.com'}</span>
-          </div>
-          <div className='user-menu__divider'></div>
-          <Link to='/profile' className='user-menu__item'>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-              <path d='M2 21a8 8 0 0 1 10.821-7.487'/>
-              <path d='M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z'/>
-              <circle cx='10' cy='8' r='5'/>
-            </svg>
-            <span>Profile</span>
-          </Link>
-          <button onClick={handleLogout} className='user-menu__item'>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-              <path d='m16 17 5-5-5-5'/>
-              <path d='M21 12H9'/>
-              <path d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/>
-            </svg>
-            <span>Log out</span>
-          </button>
-        </dialog>
+        <hr className='menu-divider'/>
+        <button className='menu-item theme-danger' onClick={handleLogout}>
+          <i className="bi bi-box-arrow-right"></i>
+          <span className="menu-item-content">
+            Log out
+            <small className="menu-item-description">End session</small>
+          </span>
+        </button>
       </div>
+      {/* User Menu Ends */}
     </header>
   )
 }
-
-export default Header

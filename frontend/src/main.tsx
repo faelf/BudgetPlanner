@@ -2,8 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import './style/main.css';
-import './style/form.css';
+import './style/styles.css';
 
 import App from './app/App.tsx';
 import Auth from './app/Auth.tsx';

@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from '../components/layout/Header.tsx';
-import Navmain from '../components/layout/Navmain.tsx';
 import ProtectedRoute from '../components/routing/ProtectedRoute.tsx';
 import Dashboard from '../pages/Dashboard.tsx';
 import Profile from '../pages/Profile.tsx';
 import Users from '../pages/Users.tsx';
-
-import './App.css';
 
 interface User {
   id: string;
@@ -15,7 +12,7 @@ interface User {
   email: string;
 }
 
-function App() {
+export default function App() {
   const [checkingSession, setCheckingSession] = useState(true);
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
 
@@ -40,26 +37,19 @@ function App() {
     checkSession();
   }, []);
 
-  const [expanded, setExpanded] = useState(false);
-
   return (
     <ProtectedRoute checkingSession={checkingSession} loggedUser={loggedUser}>
-      <div className='logged-in'>
-        <Navmain closeSidebar={() => setExpanded(prev => !prev)} expanded={expanded} />
-        <Header openSidebar={() => setExpanded(prev => !prev)} loggedUser={loggedUser} />
-        <main className='main-content'>
-          <div className="main-content__inner">
-            <Routes>
-              <Route path='/' element={<Dashboard />} />
-              <Route path='dashboard' element={<Dashboard />} />
-              <Route path='profile' element={<Profile />} />
-              <Route path='users' element={<Users />} />
-            </Routes>
-          </div>
-        </main>
-      </div>
+      <Header loggedUser={loggedUser} />
+      <main>
+        <div className='px-5'>
+          <Routes>
+            <Route path='/' element={<Dashboard />} />
+            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='profile' element={<Profile />} />
+            <Route path='users' element={<Users />} />
+          </Routes>
+        </div>
+      </main>
     </ProtectedRoute>
   );
 }
-
-export default App;
