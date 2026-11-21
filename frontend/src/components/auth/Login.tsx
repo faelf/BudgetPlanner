@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 interface LoginForm {
   username: string;
   password: string;
 }
 
-function Login() {
+interface LoginProps {
+  onSwitchToRegister: () => void;
+}
+
+export default function Login({ onSwitchToRegister }: LoginProps) {
   const navigate = useNavigate();
 
   const [error, setError] = useState<string | null>(null);
@@ -55,7 +59,7 @@ function Login() {
   }
   
   return (
-    <form className='card w-50' onSubmit={submit} autoComplete='on' style={{ maxWidth: '100%', width: '350px' }}>
+    <form className='card' onSubmit={submit} autoComplete='on' style={{ maxWidth: '100%', width: '350px' }}>
 
       <div className='card-header'>
         <h2 className='m-0'>Login</h2>
@@ -74,17 +78,15 @@ function Login() {
           </div>
           <input className='form-ghost' type='password' name='password' id='password-input' placeholder='Enter your password' autoComplete='current-password' value={form.password} onChange={handleChange}/>
         </label>
-        <button type='submit' className='theme-primary btn-solid w-100'>Login</button>
+        <button type='submit' className='theme-inverse btn-solid btn-styled w-100'>Login</button>
 
         {error && ( <div className='alert theme-danger d-flex align-items-center'>
             <i className="bi bi-exclamation-circle-fill"></i>
             <p>{error}</p>
           </div> )}
 
-        <div className='text-center'>Don't have an account ? <Link to='/auth/register'>Register</Link></div>
+        <p className='text-center'> Don't have an account ?{' '} <button type='button' className='btn btn-link p-0 align-baseline' onClick={onSwitchToRegister}> Register </button> </p>
       </div>
     </form>
   )
 }
-
-export default Login

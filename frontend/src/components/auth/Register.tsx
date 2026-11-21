@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+interface RegisterProps {
+  onSwitchToLogin: () => void;
+}
 
 interface RegisterForm {
   username: string;
@@ -12,7 +15,7 @@ type FormError = {
   message: string;
 };
 
-export default function Register() {
+export default function Register({ onSwitchToLogin }: RegisterProps) {
 
   const [error, setError] = useState<FormError | null>(null);
 
@@ -32,7 +35,7 @@ export default function Register() {
 
   async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
-    
+
     try {
       const response = await fetch('/api/user/create', {
         method: 'POST',
@@ -41,12 +44,14 @@ export default function Register() {
         },
         body: JSON.stringify(form),
       });
-  
+
       const data = await response.json();
 
       if (!response.ok) { setError(data.detail); return }
 
-    } catch (error) {
+      onSwitchToLogin();
+
+    } catch {
       setError({
         field: 'form',
         message: 'Unable to connect to the server',
@@ -55,7 +60,7 @@ export default function Register() {
   }
 
   return (
-    <form className='card w-50' id='register-user' onSubmit={handleSubmit} style={{ maxWidth: '100%', width: '350px' }}>
+    <form className='card' onSubmit={handleSubmit} style={{ maxWidth: '100%', width: '350px' }}>
 
       <div className='card-header'>
         <h2 className='m-0'>Register</h2>
@@ -78,7 +83,7 @@ export default function Register() {
           />
         </label>
 
-        <label className={`form-control form-adorn ${ error?.field === 'username' ? 'is-invalid' : '' } `}>
+        <label className={`form-control form-adorn ${ error?.field === 'email' ? 'is-invalid' : '' } `}>
           <div className='form-adorn-icon' aria-hidden='true'>
             <i className="bi bi-envelope-fill"></i>
           </div>
@@ -108,16 +113,16 @@ export default function Register() {
           />
         </label>
 
-        <button type='submit' className='theme-primary btn-solid w-100'>Register</button>
+        <button type='submit' className='theme-inverse btn-solid btn-styled w-100'>Register</button>
 
         {error && (
           <div className='alert theme-danger d-flex align-items-center'>
-              <i className="bi bi-exclamation-circle-fill"></i>
-              <p>{error.message}</p>
-            </div>
+            <i className="bi bi-exclamation-circle-fill"></i>
+            <p>{error.message}</p>
+          </div>
         )}
 
-        <p className='text-center'>Already have an account ? <Link to='/auth/login'>Login</Link></p>
+        <p className='text-center'> Already have an account ?{' '} <button type='button' className='btn btn-link p-0 align-baseline' onClick={onSwitchToLogin}> Login </button> </p>
       </div>
     </form>
   );

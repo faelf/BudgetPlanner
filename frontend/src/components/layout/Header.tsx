@@ -24,7 +24,7 @@ export default function Header({ loggedUser }: NavProps) {
       return;
     }
 
-    navigate('/auth/login');
+    navigate('/auth');
   }
 
   return (
