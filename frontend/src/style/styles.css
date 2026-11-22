@@ -2,6 +2,23 @@ a {
   text-decoration: none;
 }
 
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-align: justify;
+  text-wrap: pretty;
+}
+
+[data-bs-theme="light"] p {
+  color: hsl(0 0% 30%);
+}
+
+[data-bs-theme="dark"] p {
+  color: hsl(0 0% 70%);
+}
+
 input::placeholder {
   transition: opacity 0.2s ease;
 }

@@ -122,7 +122,7 @@ export default function Register({ onSwitchToLogin }: RegisterProps) {
           </div>
         )}
 
-        <p className='text-center'> Already have an account ?{' '} <button type='button' className='btn btn-link p-0 align-baseline' onClick={onSwitchToLogin}> Login </button> </p>
+        <p className='d-flex align-items-center justify-content-center'> Already have an account ?{' '} <button type='button' className='btn btn-link' onClick={onSwitchToLogin}> Login </button> </p>
       </div>
     </form>
   );

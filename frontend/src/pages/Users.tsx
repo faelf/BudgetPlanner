@@ -47,7 +47,7 @@ export default function Users() {
   if (error) return <p>Could not load users: {error}</p>;
 
   return (
-    <div>
+    <div className='2xl:container'>
       <h2>Users</h2>
       <Table columns={columns} rows={rows} />
     </div>

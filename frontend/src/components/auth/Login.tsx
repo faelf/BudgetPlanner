@@ -85,7 +85,7 @@ export default function Login({ onSwitchToRegister }: LoginProps) {
             <p>{error}</p>
           </div> )}
 
-        <p className='text-center'> Don't have an account ?{' '} <button type='button' className='btn btn-link p-0 align-baseline' onClick={onSwitchToRegister}> Register </button> </p>
+        <p className='d-flex align-items-center justify-content-center'> Don't have an account ?{' '} <button type='button' className='btn btn-link' onClick={onSwitchToRegister}> Register </button> </p>
       </div>
     </form>
   )

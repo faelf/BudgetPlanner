@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Login from '../components/auth/Login';
 import Register from '../components/auth/Register';
-import ThemeMenu from '../components/layout/ThemeMenu';
+import Header from '../components/layout/Header';
 
 type AuthMode = 'login' | 'register';
 
@@ -11,10 +11,7 @@ export default function Auth() {
 
   return (
     <div className='d-flex flex-column min-dvh-100'>
-      <header className='d-flex justify-content-between align-items-center py-3 px-5'>
-        <h1 className='h4 mb-0'>Budget Planner</h1>
-        <ThemeMenu button />
-      </header>
+      <Header loggedUser={null} />
 
       <main className='d-flex justify-content-center align-items-center flex-grow-1'>
         {mode === 'login' ? (

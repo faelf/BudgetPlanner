@@ -31,7 +31,7 @@ export default function ThemeMenu({ button = false, menuItem = false }: ThemeMen
         <i className='bi bi-brightness-high-fill'></i>
         <div className='menu-item-content'>
           Light
-          <small className="menu-item-description">White theme</small>
+          <small className='menu-item-description'>White theme</small>
         </div>
         <i className='menu-item-check bi bi-check'></i>
       </button>
@@ -39,7 +39,7 @@ export default function ThemeMenu({ button = false, menuItem = false }: ThemeMen
         <i className='bi bi-moon-stars-fill'></i>
         <div className='menu-item-content'>
           Dark
-          <small className="menu-item-description">Black theme</small>
+          <small className='menu-item-description'>Black theme</small>
         </div>
         <i className='menu-item-check bi bi-check'></i>
       </button>
@@ -52,7 +52,6 @@ export default function ThemeMenu({ button = false, menuItem = false }: ThemeMen
         <i className='bi bi-palette-fill'></i>
         <span>Change Theme</span>
       </button>
-
       {themeOptions}
     </>)
   }
@@ -62,8 +61,8 @@ export default function ThemeMenu({ button = false, menuItem = false }: ThemeMen
       <div className='submenu'>
         <button className='menu-item' type='button'>
           <i className='bi bi-palette-fill'></i>
-          <span className="menu-item-content"> Theme
-            <small className="menu-item-description">Change between light and dark</small>
+          <span className='menu-item-content'> Theme
+            <small className='menu-item-description'>Change between light and dark</small>
           </span>
         </button>
         {themeOptions}

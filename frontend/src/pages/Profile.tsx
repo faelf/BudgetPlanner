@@ -1,6 +1,8 @@
 function Profile() {
   return (
-    <h2>Profile</h2>
+    <div className='2xl:container'>
+      <h2>Profile</h2>
+    </div>
   )
 }
 

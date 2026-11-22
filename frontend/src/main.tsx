@@ -59,21 +59,17 @@ function AuthenticatedApp() {
     checkSession();
   }, []);
 
-  return (
+  return (<>
+    <Header loggedUser={loggedUser} />
     <ProtectedRoute checkingSession={checkingSession} loggedUser={loggedUser}>
-      <Header loggedUser={loggedUser} />
-      <main>
-        <div className='px-5'>
-          <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='dashboard' element={<Dashboard />} />
-            <Route path='users' element={<Users />} />
-            <Route path='profile' element={<Profile />} />
-          </Routes>
-        </div>
-      </main>
+      <Routes>
+        <Route path='/' element={<Dashboard />} />
+        <Route path='dashboard' element={<Dashboard />} />
+        <Route path='users' element={<Users />} />
+        <Route path='profile' element={<Profile />} />
+      </Routes>
     </ProtectedRoute>
-  );
+  </>);
 }
 
 createRoot(document.getElementById('app')!).render(
