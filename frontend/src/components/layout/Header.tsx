@@ -1,4 +1,5 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
+import ThemeMenu from './ThemeMenu.tsx';
 
 interface User {
   id: string;
@@ -28,7 +29,7 @@ export default function Header({ loggedUser }: NavProps) {
   }
 
   return (
-    <header className='d-flex justify-content-between align-items-center py-3 px-5 mb-5 bg-1'>
+    <header className='d-flex justify-content-between align-items-center py-3 px-5 bg-1'>
       <h1 className='h4 mb-0' >Budget Planner</h1>
       <nav data-bs-toggle='nav-overflow'>
         <ul className='nav nav-pills'>
@@ -53,7 +54,7 @@ export default function Header({ loggedUser }: NavProps) {
       </nav>
 
       {/* User Menu */}
-      <button className='theme-primary btn-solid btn-styled rounded-pill' type='button' data-bs-toggle='menu' aria-expanded='false'>
+      <button className='theme-inverse btn-text rounded-pill' type='button' data-bs-toggle='menu' aria-expanded='false'>
         {loggedUser?.username || 'username'}
         <span className='avatar avatar-xs'>
           <img className='avatar-img' src='https://i.pravatar.cc/150?u=rafael' alt='User Picture' />
@@ -67,13 +68,7 @@ export default function Header({ loggedUser }: NavProps) {
             <small className="menu-item-description">Edit your personal information</small>
           </span>
         </Link>
-        <button className="menu-item" type="button">
-          <i className="bi bi-moon-stars-fill"></i>
-          <span className="menu-item-content">
-            Dark
-            <small className="menu-item-description">Change the page theme</small>
-          </span>
-        </button>
+        <ThemeMenu menuItem />
         <hr className='menu-divider'/>
         <button className='menu-item theme-danger' onClick={handleLogout}>
           <i className="bi bi-box-arrow-right"></i>

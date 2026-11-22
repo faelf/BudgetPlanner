@@ -4,9 +4,14 @@
 <head>
   <script>
     (() => {
-      const savedTheme = localStorage.getItem("theme");
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      document.documentElement.dataset.theme = savedTheme ?? systemTheme;
+      let theme = localStorage.getItem('theme');
+
+      if (theme === null) {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+      }
+
+      document.documentElement.dataset.bsTheme = theme;
     })();
   </script>
   <meta charset="UTF-8" />
