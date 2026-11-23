@@ -3,10 +3,13 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import Header from './components/layout/Header.tsx';
+import LoadingScreen from './components/layout/LoadingScreen.tsx';
+import ErrorScreen from './components/layout/ErrorScreen.tsx';
 import Auth from './pages/Auth.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import Profile from './pages/Profile.tsx';
 import Users from './pages/Users.tsx';
+import UserDetails from './pages/UserDetails.tsx';
 
 import './style/styles.css';
 
@@ -24,7 +27,7 @@ interface ProtectedRouteProps {
 
 function ProtectedRoute({ checkingSession, loggedUser, children }: ProtectedRouteProps) {
   if (checkingSession) {
-    return null;
+    return <LoadingScreen message='Checking session...' />;
   }
 
   if (!loggedUser) {
@@ -55,7 +58,6 @@ function AuthenticatedApp() {
         setCheckingSession(false);
       }
     }
-
     checkSession();
   }, []);
 
@@ -67,6 +69,8 @@ function AuthenticatedApp() {
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='users' element={<Users />} />
         <Route path='profile' element={<Profile />} />
+        <Route path='users/:userId' element={<UserDetails />} />
+        <Route path='*' element={<ErrorScreen title='Page not found' message='The page you are looking for does not exist.' />} />
       </Routes>
     </ProtectedRoute>
   </>);

@@ -20,3 +20,6 @@ class UserCreateConflict(BaseModel):
 class UserLogin(BaseModel):
     username: str
     password: str
+
+class UserNotFound(BaseModel):
+    detail: str

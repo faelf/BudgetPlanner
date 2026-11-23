@@ -26,3 +26,11 @@ input::placeholder {
 input:focus::placeholder {
   opacity: 0;
 }
+
+table tr:last-child > td {
+  border-bottom: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

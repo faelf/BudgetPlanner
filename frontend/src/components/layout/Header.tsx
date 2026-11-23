@@ -29,7 +29,7 @@ export default function Header({ loggedUser }: HeaderProps) {
   }
 
   return (
-    <header className='navbar md:navbar-expand bg-1 fg-2'>
+    <header className='navbar md:navbar-expand bg-1 fg-2 mb-5 bg-transparent'>
       <div className='2xl:container'>
         {!loggedUser && ( <h1 className='navbar-brand m-0'>Budget Planner</h1> )}
         {loggedUser && ( <h1 className='navbar-brand d-none md:d-block m-0'>Budget Planner</h1> )}

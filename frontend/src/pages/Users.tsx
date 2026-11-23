@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Table from '../components/content/Table.tsx';
+import LoadingScreen from '../components/layout/LoadingScreen.tsx';
+import ErrorScreen from '../components/layout/ErrorScreen.tsx';
 
 // Matches UserResponse from the backend.
 interface User {
@@ -8,9 +12,10 @@ interface User {
   email: string;
 }
 
-// Describes the columns. `key` is the property read from each row.
+// Describes the columns displayed in the table.
+// The ID is intentionally excluded.
 const columns = [
-  { key: 'username', label: 'User' },
+  { key: 'username', label: 'Username' },
   { key: 'email', label: 'Email Address' },
 ];
 
@@ -19,10 +24,15 @@ export default function Users() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
+  // Fetches all users from the backend.
   useEffect(() => {
     async function loadUsers() {
       try {
-        const response = await fetch('api/user/get/all');
+        const response = await fetch('/api/user/get/all', {
+          credentials: 'include',
+        });
 
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
@@ -30,6 +40,7 @@ export default function Users() {
 
         const data: User[] = await response.json();
         setUsers(data);
+
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Something went wrong');
       } finally {
@@ -40,16 +51,26 @@ export default function Users() {
     loadUsers();
   }, []);
 
-  // Picks only the fields the table displays.
-  const rows = users.map((u) => ({ username: u.username, email: u.email }));
+  // Maps user data into table rows.
+  // The ID is retained for navigation but isn't displayed.
+  const rows = users.map((u) => ({
+    id: u.id,
+    username: u.username,
+    email: u.email,
+  }));
 
-  if (loading) return <p>Loading users...</p>;
-  if (error) return <p>Could not load users: {error}</p>;
+  if (loading) return <LoadingScreen message='Loading users table ...' />;
+  if (error) return <ErrorScreen />;
 
   return (
     <div className='2xl:container'>
       <h2>Users</h2>
-      <Table columns={columns} rows={rows} />
+
+      <Table
+        columns={columns}
+        rows={rows}
+        onRowClick={(row) => navigate(`/users/${row.id}`)}
+      />
     </div>
   );
 }
