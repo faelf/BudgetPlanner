@@ -60,70 +60,63 @@ export default function Register({ onSwitchToLogin }: RegisterProps) {
   }
 
   return (
-    <form className='card' onSubmit={handleSubmit} style={{ maxWidth: '100%', width: '350px' }}>
+    <form className='form-grid bg-1 shadow-lg' onSubmit={handleSubmit}>
+      <h2 className='m-0'>Register</h2>
+      <label className={`form-control form-adorn ${ error?.field === 'username' ? 'is-invalid' : '' } `}>
+        <div className='form-adorn-icon' aria-hidden='true'>
+          <i className="bi bi-person-fill"></i>
+        </div>
+        <input
+          className='form-ghost'
+          type='text'
+          name='username'
+          placeholder='Enter your username'
+          value={form.username}
+          onChange={handleChange}
+          autoComplete='username'
+        />
+      </label>
 
-      <div className='card-header'>
-        <h2 className='m-0'>Register</h2>
-      </div>
+      <label className={`form-control form-adorn ${ error?.field === 'email' ? 'is-invalid' : '' } `}>
+        <div className='form-adorn-icon' aria-hidden='true'>
+          <i className="bi bi-envelope-fill"></i>
+        </div>
+        <input
+          className='form-ghost'
+          type='email'
+          name='email'
+          placeholder={ error?.field === 'email' ? error.message : 'Enter your email' }
+          value={form.email}
+          onChange={handleChange}
+          autoComplete='email'
+        />
+      </label>
 
-      <div className='card-body'>
+      <label className='form-control form-adorn'>
+        <div className='form-adorn-icon' aria-hidden='true'>
+          <i className="bi bi-key-fill"></i>
+        </div>
+        <input
+          className='form-ghost'
+          type='password'
+          name='password'
+          placeholder='Enter your password'
+          value={form.password}
+          onChange={handleChange}
+          autoComplete='new-password'
+        />
+      </label>
 
-        <label className={`form-control form-adorn ${ error?.field === 'username' ? 'is-invalid' : '' } `}>
-          <div className='form-adorn-icon' aria-hidden='true'>
-            <i className="bi bi-person-fill"></i>
-          </div>
-          <input
-            className='form-ghost'
-            type='text'
-            name='username'
-            placeholder='Enter your username'
-            value={form.username}
-            onChange={handleChange}
-            autoComplete='username'
-          />
-        </label>
+      <button type='submit' className='theme-inverse btn-solid btn-styled w-100'>Register</button>
 
-        <label className={`form-control form-adorn ${ error?.field === 'email' ? 'is-invalid' : '' } `}>
-          <div className='form-adorn-icon' aria-hidden='true'>
-            <i className="bi bi-envelope-fill"></i>
-          </div>
-          <input
-            className='form-ghost'
-            type='email'
-            name='email'
-            placeholder={ error?.field === 'email' ? error.message : 'Enter your email' }
-            value={form.email}
-            onChange={handleChange}
-            autoComplete='email'
-          />
-        </label>
+      {error && (
+        <div className='alert theme-danger d-flex align-items-center'>
+          <i className="bi bi-exclamation-circle-fill"></i>
+          <p>{error.message}</p>
+        </div>
+      )}
 
-        <label className='form-control form-adorn'>
-          <div className='form-adorn-icon' aria-hidden='true'>
-            <i className="bi bi-key-fill"></i>
-          </div>
-          <input
-            className='form-ghost'
-            type='password'
-            name='password'
-            placeholder='Enter your password'
-            value={form.password}
-            onChange={handleChange}
-            autoComplete='new-password'
-          />
-        </label>
-
-        <button type='submit' className='theme-inverse btn-solid btn-styled w-100'>Register</button>
-
-        {error && (
-          <div className='alert theme-danger d-flex align-items-center'>
-            <i className="bi bi-exclamation-circle-fill"></i>
-            <p>{error.message}</p>
-          </div>
-        )}
-
-        <p className='d-flex align-items-center justify-content-center'> Already have an account ?{' '} <button type='button' className='btn btn-link' onClick={onSwitchToLogin}> Login </button> </p>
-      </div>
+      <p className='d-flex align-items-center justify-content-center'> Already have an account ?{' '} <button type='button' className='btn btn-link' onClick={onSwitchToLogin}> Login </button> </p>
     </form>
   );
 }

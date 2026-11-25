@@ -59,34 +59,30 @@ export default function Login({ onSwitchToRegister }: LoginProps) {
   }
   
   return (
-    <form className='card' onSubmit={submit} autoComplete='on' style={{ maxWidth: '100%', width: '350px' }}>
-
-      <div className='card-header'>
-        <h2 className='m-0'>Login</h2>
-      </div>
-
-      <div className='card-body'>
-        <label className='form-control form-adorn'>
-          <div className='form-adorn-icon' aria-hidden='true'>
-            <i className="bi bi-person-fill"></i>
-          </div>
-          <input className='form-ghost' type='text' name='username' id='username-input' placeholder='Enter your username' autoComplete='username' value={form.username} onChange={handleChange}/>
-        </label>
-        <label className='form-control form-adorn'>
-          <div className='form-adorn-icon' aria-hidden='true'>
-            <i className="bi bi-key-fill"></i>
-          </div>
-          <input className='form-ghost' type='password' name='password' id='password-input' placeholder='Enter your password' autoComplete='current-password' value={form.password} onChange={handleChange}/>
-        </label>
-        <button type='submit' className='theme-inverse btn-solid btn-styled w-100'>Login</button>
-
-        {error && ( <div className='alert theme-danger d-flex align-items-center'>
-            <i className="bi bi-exclamation-circle-fill"></i>
-            <p>{error}</p>
-          </div> )}
-
-        <p className='d-flex align-items-center justify-content-center'> Don't have an account ?{' '} <button type='button' className='btn btn-link' onClick={onSwitchToRegister}> Register </button> </p>
-      </div>
+    <form className='form-grid bg-1 shadow-lg' onSubmit={submit} autoComplete='on'>
+      <h2 className='m-0'>Login</h2>
+      <label className='form-control form-adorn'>
+        <div className='form-adorn-icon' aria-hidden='true'>
+          <i className="bi bi-person-fill"></i>
+        </div>
+        <input className='form-ghost' type='text' name='username' id='username-input' placeholder='Enter your username' autoComplete='username' value={form.username} onChange={handleChange}/>
+      </label>
+      <label className='form-control form-adorn'>
+        <div className='form-adorn-icon' aria-hidden='true'>
+          <i className="bi bi-key-fill"></i>
+        </div>
+        <input className='form-ghost' type='password' name='password' id='password-input' placeholder='Enter your password' autoComplete='current-password' value={form.password} onChange={handleChange}/>
+      </label>
+      <button type='submit' className='theme-inverse btn-solid btn-styled w-100'>Login</button>
+      {error && (
+        <div className='alert theme-danger d-flex align-items-center'>
+          <i className="bi bi-exclamation-circle-fill"></i>
+          <p>{error}</p>
+        </div>
+      )}
+      <p className='d-flex align-items-center justify-content-center'>
+        Don't have an account ?{' '} <button type='button' className='btn btn-link' onClick={onSwitchToRegister}> Register </button>
+      </p>
     </form>
   )
 }

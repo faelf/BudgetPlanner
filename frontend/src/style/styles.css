@@ -24,7 +24,7 @@ input::placeholder {
 }
 
 input:focus::placeholder {
-  opacity: 0;
+  opacity: 0.3;
 }
 
 table tr:last-child > td {
@@ -33,4 +33,13 @@ table tr:last-child > td {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: 350px;
+  padding: 1.5rem;
+  border-radius: 1rem;
 }
